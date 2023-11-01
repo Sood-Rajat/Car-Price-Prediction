@@ -11,22 +11,22 @@ import pickle
 
 loaded_model = pickle.load(open("trained_model.sav", 'rb'))
 
-with open("C:/Project STR/manufacturer_encoder.pkl", 'rb') as f:
+with open("manufacturer_encoder.pkl", 'rb') as f:
     Manufacturer_le = pickle.load(f)
 
-with open("C:/Project STR/model_encoder.pkl", 'rb') as f:
+with open("model_encoder.pkl", 'rb') as f:
     Model_le = pickle.load(f)
     
-with open("C:/Project STR/category_encoder.pkl", 'rb') as f:
+with open("category_encoder.pkl", 'rb') as f:
     Category_le = pickle.load(f)
 
-with open("C:/Project STR/fuel_type_encoder.pkl", 'rb') as f:
+with open("fuel_type_encoder.pkl", 'rb') as f:
      Fuel_type_le = pickle.load(f)
 
-with open("C:/Project STR/gear_box_encoder.pkl", 'rb') as f:
+with open("gear_box_encoder.pkl", 'rb') as f:
     Gear_box_type_le = pickle.load(f)
 
-with open("C:/Project STR/drive_wheels_encoder.pkl", 'rb') as f:
+with open("drive_wheels_encoder.pkl", 'rb') as f:
     Drive_wheels_le = pickle.load(f)
     
 
