@@ -108,6 +108,8 @@ if st.button("Predict Car Price"):
     Fuel = Fuel_type_le.transform([Fuel])
     Gear_box = Gear_box_type_le.transform([Gear_box])
     Drive = Drive_wheels_le.transform([Drive])
+    Wheel = Wheel_le.transform([Wheel])
+    Interior = Leather_interior_le.transform([Interior])
     car_features = [Manufacturer, Model, Year, Category, Interior, Fuel, Gear_box, Mileage, Cylinders, Engine_volume, Doors, Drive, Wheel, Airbags]
     predicted_price = loaded_model.predict([car_features])
     st.write(f"Estimated Car Price: ${predicted_price[0]:.2f}")
