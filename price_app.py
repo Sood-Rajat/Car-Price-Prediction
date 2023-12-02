@@ -6,6 +6,7 @@ Created on Tue Oct 31 22:43:36 2023
 """
 import streamlit as st
 import pickle
+from PIL import Image
 
 #loading the save model
 
