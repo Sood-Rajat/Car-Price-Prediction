@@ -198,18 +198,12 @@ def display_car_prediction_form():
         st.experimental_rerun()  # Restart the app to go back to the login page
 
 def main():
-    # ... (your other functions)
-
     if 'admin_logged_in' in st.session_state and st.session_state.admin_logged_in:
         display_user_information()
         if st.button("Admin Logout"):
             admin_logout()
     elif 'logged_in' in st.session_state and st.session_state.logged_in:
         display_car_prediction_form()
-        if st.button("Logout"):
-            st.session_state.logged_in = False
-            st.success("Logout successful!")
-            st.session_state.user_data = {'users': []}  # Reset user data
     else:
         option = st.radio("Choose an option", ("Login", "Sign Up", "Admin Login"))
         if option == "Login":
