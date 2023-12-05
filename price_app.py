@@ -87,17 +87,18 @@ def login():
 
     if st.button("Login"):
         user_data = st.session_state.user_data
-        if any(user['username'] == username and user['password'] == password for user in user_data['users']):
-            st.session_state.logged_in = True
-            st.success("Login successful!")
-            st.write("Welcome, " + username)
-            display_car_prediction_form()
-        else:
-            # Check if the user has signed up
-            if any(user['username'] == username for user in user_data['users']):
-                st.warning("Invalid password. Please try again.")
+        # Check if the user exists
+        if any(user['username'] == username for user in user_data['users']):
+            # Check if the password is correct
+            if any(user['username'] == username and user['password'] == password for user in user_data['users']):
+                st.session_state.logged_in = True
+                st.success("Login successful!")
+                st.write("Welcome, " + username)
+                display_car_prediction_form()
             else:
-                st.warning("User not found. Please sign up first.")
+                st.warning("Invalid password. Please try again.")
+        else:
+            st.warning("User not found. Please sign up first."
 def signup():
     st.title("Sign Up")
 
