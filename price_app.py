@@ -98,7 +98,7 @@ def login():
             else:
                 st.warning("Invalid password. Please try again.")
         else:
-            st.warning("User not found. Please sign up first."
+            st.warning("User not found. Please sign up first.")
 def signup():
     st.title("Sign Up")
 
