@@ -76,7 +76,7 @@ def signup():
         st.success("Sign Up successful! Please login.")
 def display_car_prediction_form():
     st.title("Car Price Predictor")
-    image = Image.open("C:/Project STR/753302.jpg")
+    image = Image.open("753302.jpg")
     st.image(image, '')
     
     manufacturer_options = ['LEXUS','CHEVROLET','HONDA','FORD','HYUNDAI','TOYOTA','MERCEDES-BENZ','OPEL','PORSCHE','BMW', 'JEEP','VOLKSWAGEN','AUDI','RENAULT','NISSAN', 'SUBARU','DAEWOO','KIA',
