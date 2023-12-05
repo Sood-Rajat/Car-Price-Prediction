@@ -49,6 +49,36 @@ if 'user_data' not in st.session_state:
 if 'user_data' not in st.session_state:
     st.session_state.user_data = {'users': []}
 
+def display_user_information():
+    st.title("Admin Panel - User Information")
+    
+    user_data = st.session_state.user_data
+    if user_data['users']:
+        st.write("List of Users:")
+        for user in user_data['users']:
+            st.write(f"Username: {user['username']}, Password: {user['password']}")
+    else:
+        st.warning("No users have signed up yet.")
+def admin_logout():
+    st.session_state.admin_logged_in = False
+    st.success("Admin Logout successful!")
+def admin_login():
+    st.title("Admin Login")
+
+    admin_username = "Admin"  # You can customize the admin username
+    admin_password = "Admin_1234"  # You can customize the admin password
+
+    entered_username = st.text_input("Admin Username")
+    entered_password = st.text_input("Admin Password", type="password")
+
+    if st.button("Admin Login"):
+        if entered_username == admin_username and entered_password == admin_password:
+            st.session_state.admin_logged_in = True
+            st.success("Admin Login successful!")
+            display_user_information()
+        else:
+            st.warning("Invalid admin credentials. Please try again.")
+
 def login():
     st.title("Login")
 
@@ -62,7 +92,12 @@ def login():
             st.success("Login successful!")
             st.write("Welcome, " + username)
             display_car_prediction_form()
-
+        else:
+            # Check if the user has signed up
+            if any(user['username'] == username for user in user_data['users']):
+                st.warning("Invalid password. Please try again.")
+            else:
+                st.warning("User not found. Please sign up first.")
 def signup():
     st.title("Sign Up")
 
@@ -70,10 +105,14 @@ def signup():
     new_password = st.text_input("New Password", type="password")
 
     if st.button("Sign Up"):
-        # Add your signup logic here
         user_data = st.session_state.user_data
-        user_data['users'].append({'username': new_username, 'password': new_password})
-        st.success("Sign Up successful! Please login.")
+        # Check if the username is already taken
+        if any(user['username'] == new_username for user in user_data['users']):
+            st.warning("Username already taken. Please choose a different username.")
+        else:
+            user_data['users'].append({'username': new_username, 'password': new_password})
+            st.success("Sign Up successful! Please login.")
+            
 def display_car_prediction_form():
     st.title("Car Price Predictor")
     image = Image.open("753302.jpg")
@@ -158,14 +197,20 @@ def display_car_prediction_form():
         st.experimental_rerun()  # Restart the app to go back to the login page
 
 def main():
-    if 'logged_in' not in st.session_state or not st.session_state.logged_in:
-        option = st.radio("Choose an option", ("Login", "Sign Up"))
+    if 'admin_logged_in' in st.session_state and st.session_state.admin_logged_in:
+        display_user_information()
+        if st.button("Admin Logout"):
+            admin_logout()
+    elif 'logged_in' in st.session_state and st.session_state.logged_in:
+        display_car_prediction_form()
+    else:
+        option = st.radio("Choose an option", ("Login", "Sign Up", "Admin Login"))
         if option == "Login":
             login()
-        else:
+        elif option == "Sign Up":
             signup()
-    else:
-        display_car_prediction_form()
+        elif option == "Admin Login":
+            admin_login()
 
 if __name__ == "__main__":
     main()
