@@ -151,7 +151,7 @@ def display_car_prediction_form():
         car_features = [Manufacturer, Model, Year, Category, Interior, Fuel, Gear_box, Mileage, Cylinders, Engine_volume, Doors, Drive, Wheel, Airbags]
         predicted_price = loaded_model.predict([car_features])
         st.write(f"Estimated Car Price: ${predicted_price[0]:.2f}")
-        if st.button("Logout"):
+    if st.button("Logout"):
         st.session_state.logged_in = False
         st.success("Logout successful!")
         st.session_state.user_data = {'users': []}  # Reset user data
