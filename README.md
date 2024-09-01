@@ -1,0 +1,3 @@
+# Car Price Prediction
+The problem we're addressing during the process of buying and selling the car is finding a price that satisfies both the buyer and the seller. And to help the market analysts which can understand the cars pricing trends better.
+To overcome this problem, I have used a dataset listing cars from various manufacturers, along with their prices, based on key features such as mileage, engine volume, and wheels. Within this dataset, I conducted data analysis, including data cleaning and visualization using graphs and charts. Then, I built machine learning models in the end.These machine learning models are capable of accurately predicting car prices, which can assist both buyers and sellers throughout the buying and selling process.
